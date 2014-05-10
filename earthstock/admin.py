@@ -1,6 +1,13 @@
 from django.contrib import admin
-from earthstock.models import Stock
+from earthstock.models import Stock, Quote
+
+class QuoteInline(admin.TabularInline):
+    model = Quote
 
 class StockAdmin(admin.ModelAdmin):
-    pass
+    model = Stock
+    inlines = [
+        QuoteInline
+    ]
+
 admin.site.register(Stock, StockAdmin)

@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render
+from earthstock.models import Stock, Quote
 
 # these next two imports could be useful for generating a kmz, if needed
 #from cStringIO import StringIO
@@ -19,6 +20,9 @@ def earthstock(request):
     
 
 def stocks_kml(request):
-    #return render(request, 'stocks.kml', content_type='application/vnd.google-earth.kml+xml');
-    return render(request, 'stocks.kml');
+    context = {
+        'stocks': []
+    }
+    return render(request, 'stocks.kml', context, content_type='application/vnd.google-earth.kml+xml');
+    #return render(request, 'stocks.kml', context);
     

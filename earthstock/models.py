@@ -12,7 +12,7 @@ class Stock(models.Model):
     longitude = models.FloatField()
 
 class Quote(models.Model):
-    stock = models.ForeignKey('Stock', null=False, unique=True)
+    stock = models.ForeignKey(Stock, null=False, unique=True, default=0)
     price = models.FloatField()
     change = models.FloatField()
     last_modified = models.DateTimeField(null=False, auto_now=True, auto_now_add=True)
