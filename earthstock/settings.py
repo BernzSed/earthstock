@@ -42,7 +42,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_evolution'
+    'django_evolution',
+    'earthstock'
 )
 
 MIDDLEWARE_CLASSES = (
