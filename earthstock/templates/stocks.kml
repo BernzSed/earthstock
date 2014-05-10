@@ -3,18 +3,18 @@
   <Document>
     <name>Stocks</name>
     <open>1</open>
-    <description>Stocks! Oh my god! Look at them! JUST LOOK AT THEM!</description>
+    <description>Stocks! Oh my god! Look at them! JUST LOOK AT THEM!!!</description>
     <Style id="upStock">
       <IconStyle>
         <Icon>
-          <href>http://maps.google.com/mapfiles/kml/pal4/icon28.png</href>
+          <href>{{ request.get_host }}{{STATIC_URL}}img/stockUp.png</href>
         </Icon>
       </IconStyle>
     </Style>
     <Style id="downStock">
       <IconStyle>
         <Icon>
-          <href>http://maps.google.com/mapfiles/kml/pal4/icon28.png</href>
+          <href>{{ request.get_host }}{{STATIC_URL}}img/stockDown.png</href>
         </Icon>
       </IconStyle>
     </Style>

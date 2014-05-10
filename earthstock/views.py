@@ -19,5 +19,6 @@ def earthstock(request):
     
 
 def stocks_kml(request):
-    return render(request, 'stocks.kml', content_type='application/vnd.google-earth.kml+xml');
+    #return render(request, 'stocks.kml', content_type='application/vnd.google-earth.kml+xml');
+    return render(request, 'stocks.kml');
     
