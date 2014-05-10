@@ -1,4 +1,10 @@
+from django.http import HttpResponse
 from django.shortcuts import render
+
+# these next two imports could be useful for generating a kmz, if needed
+#from cStringIO import StringIO
+#import zipfile
+
 
 
 def index(request):
@@ -10,3 +16,8 @@ def earthstock(request):
 	data = {'hello':'hello world!'}
 	# return HttpResponse(template.render(context))
 	return render(request, 'earthstock.html', data)
+    
+
+def stocks_kml(request):
+    return render(request, 'stocks.kml', content_type='application/vnd.google-earth.kml+xml');
+    
