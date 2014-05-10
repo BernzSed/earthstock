@@ -10,3 +10,8 @@ class Stock(models.Model):
     company = models.CharField(max_length = 200, null=False)
     latitude = models.FloatField()
     longitude = models.FloatField()
+
+class Quote(models.Model):
+    stock = models.ForeignKey('Stock')
+    price = models.FloatField()
+    change = models.FloatField()
