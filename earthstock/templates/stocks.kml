@@ -7,14 +7,14 @@
     <Style id="upStock">
       <IconStyle>
         <Icon>
-          <href>{{ request.get_host }}{{STATIC_URL}}img/stockUp.png</href>
+          <href>http://{{ request.get_host }}{{STATIC_URL}}img/stockUp.png</href>
         </Icon>
       </IconStyle>
     </Style>
     <Style id="downStock">
       <IconStyle>
         <Icon>
-          <href>{{ request.get_host }}{{STATIC_URL}}img/stockDown.png</href>
+          <href>http://{{ request.get_host }}{{STATIC_URL}}img/stockDown.png</href>
         </Icon>
       </IconStyle>
     </Style>
@@ -29,14 +29,17 @@
         <tilt>40.5575073395506</tilt>
         <range>500.6566641072245</range>
       </LookAt>-->
+      
+      {% for quote in quotes %}
       <Placemark>
-        <name>GOOG</name>
-        <description>HOLY SHIT IT'S FUCKING GOOGLE! BUY! BUY NOW!</description>
+        <name>{{quote.stock.symbol}}</name>
+        <description>{{quote.stock.company}}</description>
         <Point>
-          <coordinates>-122.0822035425683,37.42228990140251,0</coordinates>
+          <coordinates>{{quote.stock.longitude}},{{quote.stock.latitude}},0</coordinates>
         </Point>
-        <styleUrl>#upStock</styleUrl>
+        <styleUrl>{% if quote.change < 0 %}#downStock{% else %}#upStock{% endif %}</styleUrl>
       </Placemark>
+      {% endfor %}
     </Folder>
   </Document>
 </kml>
