@@ -52,23 +52,27 @@ def updatestocks(request):
 	y=BeautifulSoup(r.content)
 	# pprint(y)
 	for quote in y.findAll('quote'):
-		# print quote
-		s = Stock.objects.get(symbol = quote["symbol"])
-		# pprint(dir(s))
-		# pprint(dir(quote))
+		try:
+			# print quote
+			s = Stock.objects.get(symbol = quote["symbol"])
+			# pprint(dir(s))
+			# pprint(dir(quote))
 
-		change = quote.findChild("change").text
-		lastprice = quote.findChild("lasttradepriceonly").text
-		# print lastprice
-		# pprint(dir(change))
-		# print change.text
-		q = s.quote_set.first()  # one or none
-		if q == None:
-			q = Quote(stock=s)
-		q.change = change
-		q.price = lastprice
-		q.save()
-		print "success"
+			change = quote.findChild("change").text
+			lastprice = quote.findChild("lasttradepriceonly").text
+			# print lastprice
+			# pprint(dir(change))
+			# print change.text
+			q = s.quote_set.first()  # one or none
+			if q == None:
+				q = Quote(stock=s)
+			q.change = change
+			q.price = lastprice
+			q.save()
+			print "success"
+		except Exception, e:
+			continue
+			
 		# print quote["symbol"]
 	# xmldoc = minidom.parse(r.content)
 	# quotes = xmldoc.getElementsByTagName('quote')
