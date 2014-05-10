@@ -5,15 +5,14 @@
 
 {% block content %}
 <div class="row">
-	<div class="col-xs-3">
-		
+	<div id="sidebar" class="col-xs-3">
+		{% include "partials/test.html" with test="Test!" %}
 	</div>
-	<div class="col-xs-9">
-		
-	</div>
+	<div id="map3d" class="col-xs-9"></div>
 </div>
 {% endblock %}
 
 {% block script %}
-	<script src="{% static "js/app.js" %}"></script>
+	<script type="text/javascript" src="{% static "js/Earth.js" %}"></script>
+	<script type="text/javascript" src="{% static "js/app.js" %}"></script>
 {% endblock %}
