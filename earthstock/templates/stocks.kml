@@ -32,7 +32,7 @@
       
       {% for quote in quotes %}
       <Placemark>
-        <name>{{quote.stock.symbol}} ({{stock.quote.change}})</name>
+        <name>{{quote.stock.symbol}} ({{quote.change}})</name>
         <description><![CDATA[ <h2>{{quote.stock.company}}</h2> <div><span>{{quote.price}}</span><img src="{% if quote.change < 0 %}{{STATIC_URL}}img/stockDown.png{% else %}{{STATIC_URL}}img/stockUp.png{% endif %}" alt="{% if quote.change < 0 %}-{% else %}+{% endif %}" /> <span>{{quote.change}}</span></div><div><a href="http://finance.yahoo.com/q?s={{quote.stock.symbol}}" style="color:blue;" target="_blank"><font color="blue">More info...</font></a></div>]]></description>
         <Point>
           <coordinates>{{quote.stock.longitude}},{{quote.stock.latitude}},0</coordinates>
