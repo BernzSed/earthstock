@@ -27,6 +27,7 @@ SECRET_KEY = ')d7_bj90rf3pv$d*2nt3%rzn_r(uiq+ht-b5^$k-=ir$+^b21e'
 DEBUG = True
 
 TEMPLATE_DEBUG = True
+TEMPLATE_DIRS = [os.path.join(BASE_DIR, 'templates')]
 
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
