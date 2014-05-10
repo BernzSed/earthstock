@@ -15,3 +15,4 @@ class Quote(models.Model):
     stock = models.ForeignKey('Stock')
     price = models.FloatField()
     change = models.FloatField()
+    last_modified = models.DateTimeField(null=False, auto_now=True, auto_now_add=True)
