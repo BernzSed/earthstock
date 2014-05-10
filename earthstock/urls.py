@@ -11,6 +11,7 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
     url(r'^$', views.index, name='index'),
     url(r'^earthstock/', views.earthstock, name='earthstock'),
+    url(r'^updatestocks/', views.updatestocks, name='updatestocks'),
     url(r'^stocks.kml$', views.stocks_kml, name='stocks_kml'),
     url(r'^admin/', include(admin.site.urls)),
 )

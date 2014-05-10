@@ -14,9 +14,9 @@ def index(request):
 def earthstock(request):
 	# template = loader.get_template('earthstock.html')
 	# context = RequestContext(request)
-	data = {'hello':'hello world!'}
+	context = {'hello':'hello world!'}
 	# return HttpResponse(template.render(context))
-	return render(request, 'earthstock.html', data)
+	return render(request, 'earthstock.html', context)
     
 
 def stocks_kml(request):
@@ -26,3 +26,5 @@ def stocks_kml(request):
     return render(request, 'stocks.kml', context, content_type='application/vnd.google-earth.kml+xml');
     #return render(request, 'stocks.kml', context);
     
+def updatestocks(request):
+	return render(request, 'updatestocks.html', {})

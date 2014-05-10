@@ -13,7 +13,7 @@
 											,"mouseup"
 											,"mouseout"
 											,"mousemove"];
-		var ge, longitude, latitude, altitude;
+		var ge = {}, longitude, latitude, altitude;
 		if(!target){
 			target = "body";
 		}
@@ -56,16 +56,15 @@
 			// If earth could load
 			ge = instance;
 			ge.getWindow().setVisibility(true);
-			ge.getOptions().setUnitsFeetMiles(true);
 			var lookAt = ge.getView().copyAsLookAt(ge.ALTITUDE_RELATIVE_TO_GROUND);
 			earth.latitude = lookAt.getLatitude();
 			earth.longitude = lookAt.getLongitude();
 			earth.altitude = lookAt.getRange();
 			ge.getNavigationControl().setVisibility(ge.VISIBILITY_AUTO);
-			ge.getLayerRoot().enableLayerById(ge.LAYER_BORDERS, true);
-			ge.getOptions().setStatusBarVisibility(true);
+			// ge.getLayerRoot().enableLayerById(ge.LAYER_BORDERS, true);
 			ge.getOptions().setUnitsFeetMiles(true);
-			ge.getOptions().setFadeInOutEnabled(false);
+			ge.getOptions().setStatusBarVisibility(true);
+			// ge.getOptions().setFadeInOutEnabled(false);
 			if(callback && typeof(callback) === "function") {
 				callback()
 			}
@@ -130,7 +129,15 @@
 			balloon.setContentDiv(div);
 			ge.setBalloon(balloon);
 		}
-		earth.kmlStuff = function(){
+		earth.kmlStuff = function(kml){
+			console.log('kml');
+			console.debug(kml);
+			// var href = '/stocks.kml';
+
+			// google.earth.fetchKml(ge, href, function(kmlObject) {
+			//       if (kmlObject)
+			//          ge.getFeatures().appendChild(kmlObject);
+			// });
 			var kmlString = ''
               + '<?xml version="1.0" encoding="UTF-8"?>'
               + '<kml xmlns="http://www.opengis.net/kml/2.2">'
@@ -151,11 +158,30 @@
 
               + '</Document>'
               + '</kml>';
+              // console.log(typeof kml.toString());
+              // console.log(typeof kmlString);
+              console.debug(kml);
+   		// console.debug(JSON.stringify(kml));
+			// var kmlObject = ge.parseKml(kmlString);
+			// // var kmlObject = ge.parseKml(kml);
+			// ge.getFeatures().appendChild(kmlObject);
+			// if (kmlObject.getAbstractView())
+   // 		ge.getView().setAbstractView(kmlObject.getAbstractView());
+		}
+		earth.loadKmlByLink = function(href){
+			var link = ge.createLink('');
+			var href = location.origin + href
+			console.log(href);
+			console.log(typeof href);
+			// var href = 'http://localhost:8000' + '/stocks.kml'
+			// console.log(href);
+			// console.log(typeof href);
+			link.setHref(href);
 
-			var kmlObject = ge.parseKml(kmlString);
-			ge.getFeatures().appendChild(kmlObject);
-			if (kmlObject.getAbstractView())
-   		ge.getView().setAbstractView(kmlObject.getAbstractView());
+			var networkLink = ge.createNetworkLink('');
+			networkLink.set(link, false, false); // Sets the link, refreshVisibility, and flyToView
+
+			ge.getFeatures().appendChild(networkLink);
 		}
 		return earth;
 	}
