@@ -21,7 +21,7 @@ def earthstock(request):
 
 def stocks_kml(request):
     context = {
-        'stocks': []
+        'quotes': Quote.objects.select_related()
     }
     return render(request, 'stocks.kml', context, content_type='application/vnd.google-earth.kml+xml');
     #return render(request, 'stocks.kml', context);
